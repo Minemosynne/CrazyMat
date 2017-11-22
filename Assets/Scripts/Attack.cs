@@ -8,6 +8,7 @@ public class Attack : MonoBehaviour
 
     public string attackName;
 
-    public int damage;
+    public int minDamage;
+    public int maxDamage;
 
 }

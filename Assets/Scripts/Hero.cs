@@ -17,7 +17,7 @@ public class Hero : MonoBehaviour {
     public int Attack(Attack attack)
     {
         Debug.Log("Hero attacks");
-        return attack.damage;
+        return Random.Range(attack.minDamage, attack.maxDamage);
     }
 
     public int TakeDamage(int damage)
