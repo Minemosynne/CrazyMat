@@ -9,6 +9,12 @@ public class Hero : MonoBehaviour {
     public int baseHP;
     public int currentHP;
 
+    public int nbScraps;
+    public int nbGears;
+    public int nbMetals;
+
+    //TODO stock de potions
+
     private void OnEnable()
     {
         currentHP = baseHP;
@@ -17,6 +23,7 @@ public class Hero : MonoBehaviour {
     public int Attack(Attack attack)
     {
         Debug.Log("Hero attacks");
+        //TODO weight & velocity influence damage
         return Random.Range(attack.minDamage, attack.maxDamage);
     }
 
@@ -42,5 +49,15 @@ public class Hero : MonoBehaviour {
     private void ChooseAttack()
     {
         Destroy(gameObject);
+    }
+
+    public void pickUpObject()
+    {
+        //TODO
+    }
+
+    public void regenerateLife()
+    {
+        //TODO
     }
 }

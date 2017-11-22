@@ -12,6 +12,8 @@ public class Weapon : MonoBehaviour {
         HEAVY
     }
 
+    public Type type;
+
     public float velocity;
     public float weight;
     public float lifeRegeneration;

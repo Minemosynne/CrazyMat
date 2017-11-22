@@ -11,4 +11,5 @@ public class Attack : MonoBehaviour
     public int minDamage;
     public int maxDamage;
 
+    public Recipy recipy;
 }
