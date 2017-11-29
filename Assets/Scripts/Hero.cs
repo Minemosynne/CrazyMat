@@ -24,7 +24,7 @@ public class Hero : MonoBehaviour {
     {
         Debug.Log("Hero attacks");
         //TODO weight & velocity influence damage
-        return Random.Range(attack.minDamage, attack.maxDamage);
+        return Random.Range(attack.MinDamage, attack.MaxDamage);
     }
 
     public int TakeDamage(int damage)
@@ -46,17 +46,12 @@ public class Hero : MonoBehaviour {
         Debug.Log("Enemy dead");
     }
 
-    private void ChooseAttack()
-    {
-        Destroy(gameObject);
-    }
-
-    public void pickUpObject()
+    public void PickUpObject()
     {
         //TODO
     }
 
-    public void regenerateLife()
+    public void RegenerateLife()
     {
         //TODO
     }

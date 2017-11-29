@@ -78,10 +78,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Attack.cs" />
     <Compile Include="Assets\Scripts\BattleManagement.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enhancement\Attack.cs" />
+    <Compile Include="Assets\Scripts\Enhancement\Enhancement.cs" />
+    <Compile Include="Assets\Scripts\Enhancement\WeaponEnhancement.cs" />
     <Compile Include="Assets\Scripts\Hero.cs" />
+    <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Recipy.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
   </ItemGroup>

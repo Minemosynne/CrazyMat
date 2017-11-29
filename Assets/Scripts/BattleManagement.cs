@@ -22,10 +22,10 @@ public class BattleManagement : MonoBehaviour {
         //Récupère la liste d'attaques
         Attacks = HeroInBattle.GetComponent<Weapon>().Attacks;
         //Crée les boutons d'attaque
-        createAttackButtons(HeroInBattle.GetComponent<Weapon>().baseAttack);
+        CreateAttackButtons(HeroInBattle.GetComponent<Weapon>().baseAttack);
         foreach(Attack a in Attacks)
         {
-            createAttackButtons(a);
+            CreateAttackButtons(a);
         }
     }
 
@@ -52,11 +52,12 @@ public class BattleManagement : MonoBehaviour {
         //TODO si gagnant -> retourne là où il est sur la map; si perdant -> retourne au village?
     }
 
-    private void createAttackButtons(Attack attack)
+    private void CreateAttackButtons(Attack attack)
     {
+        //TODO
         GameObject AttackButton = Instantiate(ActionButton) as GameObject;
         Text AttackButtonText = AttackButton.transform.Find("Text").gameObject.GetComponent<Text>();
-        AttackButtonText.text = attack.attackName;
+        AttackButtonText.text = attack.Name;
         AttackButton.GetComponent<Button>().onClick.AddListener(() => Battle(attack));
         AttackButton.transform.SetParent(Spacer, false);
     }

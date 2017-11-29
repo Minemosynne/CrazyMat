@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Recipy : MonoBehaviour {
+[System.Serializable]
+public class Recipy {
 
 	public int nbScrapsNeeded;
     public int nbGearsNeeded;
