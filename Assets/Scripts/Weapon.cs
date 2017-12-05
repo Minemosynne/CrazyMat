@@ -14,9 +14,9 @@ public class Weapon : MonoBehaviour {
 
     public Type type;
 
-    public float velocity;
-    public float weight;
-    public float lifeRegeneration;
+    public int velocity;
+    public int weight;
+    public int lifeRegeneration;
 
     public List<Attack> Attacks = new List<Attack>();
 
@@ -30,5 +30,10 @@ public class Weapon : MonoBehaviour {
         baseAttack = attack;
     }
 
-    //public void EnhanceSpecifications() { }
+    public void EnhanceSpecifications( WeaponEnhancement enhancement)
+    {
+        velocity += enhancement.AugmentedVelocity;
+        weight += (enhancement.AugmentedWeight - enhancement.DiminuedWeight);
+        lifeRegeneration += enhancement.AugmentedLifeRegeneration;
+    }
 }

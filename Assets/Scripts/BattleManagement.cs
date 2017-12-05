@@ -54,7 +54,6 @@ public class BattleManagement : MonoBehaviour {
 
     private void CreateAttackButtons(Attack attack)
     {
-        //TODO
         GameObject AttackButton = Instantiate(ActionButton) as GameObject;
         Text AttackButtonText = AttackButton.transform.Find("Text").gameObject.GetComponent<Text>();
         AttackButtonText.text = attack.Name;

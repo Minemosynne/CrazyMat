@@ -4,9 +4,9 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Enhancement/Generic", fileName = "Generic Enhancement")]
 public class Enhancement : ScriptableObject {
-    public string Name = "New Attack";
+    public string Name = "New Enhancement";
     [Multiline(3)]
-    public string Description = "Attack Description";
+    public string Description = "Description";
 
     public Recipy Recipy;
 }
