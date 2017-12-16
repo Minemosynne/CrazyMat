@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour {
+[CreateAssetMenu(menuName = "Weapon/Weapon", fileName = "Weapon")]
+public class Weapon : ScriptableObject {
 
-    public Attack baseAttack;
+    public Attack BaseAttack;
 
     public enum Type
     {
@@ -13,12 +14,14 @@ public class Weapon : MonoBehaviour {
     }
 
     public Type type;
-
-    public int velocity;
-    public int weight;
-    public int lifeRegeneration;
+    
+    public float velocity;
+    public float weight;
+    [Range(0, 1)]
+    public float lifeRegeneration;
 
     public List<Attack> Attacks = new List<Attack>();
+    public List<WeaponEnhancement> WeaponEnhancements = new List<WeaponEnhancement>();
 
     public void AddAttack(Attack attack)
     {
@@ -27,11 +30,12 @@ public class Weapon : MonoBehaviour {
 
     public void EnhanceBaseAttack(Attack attack)
     {
-        baseAttack = attack;
+        BaseAttack = attack;
     }
 
-    public void EnhanceSpecifications( WeaponEnhancement enhancement)
+    public void EnhanceSpecifications(WeaponEnhancement enhancement)
     {
+        WeaponEnhancements.Add(enhancement);
         velocity += enhancement.AugmentedVelocity;
         weight += (enhancement.AugmentedWeight - enhancement.DiminuedWeight);
         lifeRegeneration += enhancement.AugmentedLifeRegeneration;

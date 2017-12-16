@@ -6,6 +6,7 @@ using UnityEngine;
 public class Attack : Enhancement
 {
     [Header("Properties")]
+    public bool basic;
     [Range(1,100)]
     public int MinDamage;
     [Range(1,100)]

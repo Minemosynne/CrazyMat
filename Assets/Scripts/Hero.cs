@@ -1,28 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Hero : MonoBehaviour {
 
-    public string heroName;
-    public int baseHP;
-    public int currentHP;
+    public string HeroName;
+    public int BaseHP;
+    public int CurrentHP;
 
-    public int nbScraps;
-    public int nbGears;
-    public int nbMetals;
-
-    //TODO stock de potions
+    public Weapon Weapon;
+    [SerializeField]
+    private Inventory _playerInventory;
 
     private void OnEnable()
     {
-        currentHP = baseHP;
+        CurrentHP = BaseHP;
     }
 
     public int Attack(Attack attack)
     {
-        Debug.Log("Hero attacks");
+        Debug.Log("--->Hero attacks");
         //TODO weight & velocity influence damage
         return Random.Range(attack.MinDamage, attack.MaxDamage);
     }
@@ -30,9 +29,9 @@ public class Hero : MonoBehaviour {
     public int TakeDamage(int damage)
     {
         Debug.Log("damage received : " + damage);
-        currentHP -= damage;
-        Debug.Log("hero hp : " + currentHP);
-        if (currentHP <= 0)
+        CurrentHP -= damage;
+        Debug.Log("hero hp : " + CurrentHP);
+        if (CurrentHP <= 0)
         {
             Die();
             return -1;
@@ -42,8 +41,9 @@ public class Hero : MonoBehaviour {
 
     public void Die()
     {
-        //TODO
         Debug.Log("Enemy dead");
+        //ouvre scène village; là script village spawn heros à spawnPosition & currentHp = baseHp;
+
     }
 
     public void PickUpObject()
@@ -53,6 +53,14 @@ public class Hero : MonoBehaviour {
 
     public void RegenerateLife()
     {
-        //TODO
+
+        CurrentHP += (int)Mathf.Ceil(BaseHP * Weapon.lifeRegeneration);
+        Debug.Log("-------regen life : " + CurrentHP);
+    }
+
+    public void UsePotion()
+    {
+        _playerInventory.nbPotions--;
+        CurrentHP += (int)Mathf.Ceil(BaseHP * 0.1f);
     }
 }

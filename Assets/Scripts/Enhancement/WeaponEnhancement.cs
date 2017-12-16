@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Enhancement/Weapon Enhancement", fileName = "WeaponEnhancement")]
-public class WeaponEnhancement : Enhancement {
+public class WeaponEnhancement : Enhancement
+{
 
     [Header("Properties")]
-    [Range(1, 100)]
-    public int AugmentedVelocity;
-    [Range(1, 100)]
-    public int AugmentedWeight;
-    [Range(1, 100)]
-    public int DiminuedWeight;
-    [Range(1, 100)]
-    public int AugmentedLifeRegeneration;
+    [Range(0,1)]
+    public float AugmentedVelocity;
+    [Range(0, 1)]
+    public float AugmentedWeight;
+    [Range(0, 1)]
+    public float DiminuedWeight;
+    [Range(0, 1)]
+    public float AugmentedLifeRegeneration;
 }

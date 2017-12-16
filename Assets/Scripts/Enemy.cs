@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour {
     {
         SMALL,
         BIG,
+        SMALL_BOSS,
+        BIG_BOSS
     }
 
     public string enemyName;
@@ -19,8 +21,6 @@ public class Enemy : MonoBehaviour {
 
     public Type type;
 
-    public bool boss;
-
     private void OnEnable()
     {
         currentHP = baseHP;
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour {
 
     public int Attack()
     {
-        Debug.Log("Enemy attacks");
+        Debug.Log("--->Enemy attacks");
         return Random.Range(minAttack, maxAttack);
     }
 
@@ -39,7 +39,6 @@ public class Enemy : MonoBehaviour {
         Debug.Log("enemy hp : " + currentHP);
         if (currentHP <= 0)
         {
-            Die();
             return -1;
         }
         return 0;
@@ -47,7 +46,7 @@ public class Enemy : MonoBehaviour {
 
     public void Die()
     {
-        //TODO pool ?
+        //TODO pool au lieu de Destroy
         Debug.Log("Enemy dead");
         Destroy(gameObject);
     }

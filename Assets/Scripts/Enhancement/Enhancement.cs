@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enhancement/Generic", fileName = "Generic Enhancement")]
 public class Enhancement : ScriptableObject {
     public string Name = "New Enhancement";
     [Multiline(3)]
-    public string Description = "Description";
+    public string Description = "Enhancement Description";
 
-    public Recipy Recipy;
+    public enum Type
+    {
+        ATCK,
+        WPEN
+    }
+
+    public Type type;
+
+    public bool unlocked = false;
+
+    [Header("Recipy")]
+    public int nbScrapsNeeded;
+    public int nbGearsNeeded;
+    public int nbMetalsNeeded;
 }
