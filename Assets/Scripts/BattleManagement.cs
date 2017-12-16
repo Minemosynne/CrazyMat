@@ -21,6 +21,7 @@ public class BattleManagement : MonoBehaviour {
     void Start () {
         //Récupère Enemy
         EnemyInBattle = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>();
+        GameObject.FindGameObjectWithTag("Enemy").transform.position = new Vector3(-5, 0, 10);
         //Récupère Heros
         HeroInBattle = GameObject.Find("Hero").GetComponent<Hero>();
         //Récupère la liste d'attaques

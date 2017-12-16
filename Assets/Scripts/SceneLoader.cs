@@ -33,8 +33,17 @@ public class SceneLoader : MonoBehaviour
 
     public void StartFight(GameObject enemy)
     {
-        // SceneManager.LoadScene(FightScene);
-        // Debug.Log("Scene : " + SceneManager.GetSceneByName(FightScene));
-        SceneManager.MoveGameObjectToScene(enemy, SceneManager.GetSceneByName(FightScene));
+        DontDestroyOnLoad(enemy);
+        SceneManager.LoadScene(FightScene);
+    }
+
+    public void LoseFight()
+    {
+        //Retourne au village
+    }
+
+    public void WinFight()
+    {
+        //Retourne sur la map
     }
 }

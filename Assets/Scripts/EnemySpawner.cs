@@ -6,11 +6,11 @@ using System;
 public class EnemySpawner : MonoBehaviour
 {
 
-    public LootEnemy.TypeEnemy typeEnemy;
+    private LootEnemy.TypeEnemy typeEnemy;
     public LootEnemy lootEnemy;
 
     public static int maxEnemies = 25;
-    public int nbEnemiesSpawned = 0;
+    private int nbEnemiesSpawned = 0;
 
     public float minX = -1f;
     public float maxX = 49f;
@@ -53,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
             obj.transform.rotation = transform.rotation;
 
             nbEnemiesSpawned++;
+            Debug.Log("--Enemy type : " + this.typeEnemy);
             Debug.Log(nbEnemiesSpawned + " enemies spawned !");
         }
     }
