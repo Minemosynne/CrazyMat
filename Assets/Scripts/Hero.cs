@@ -54,7 +54,7 @@ public class Hero : MonoBehaviour {
     public void RegenerateLife()
     {
 
-        CurrentHP += (int)Mathf.Ceil(BaseHP * Weapon.lifeRegeneration);
+        CurrentHP += (int)Mathf.Ceil(CurrentHP * Weapon.lifeRegeneration);
         Debug.Log("-------regen life : " + CurrentHP);
     }
 

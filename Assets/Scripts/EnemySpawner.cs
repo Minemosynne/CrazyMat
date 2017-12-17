@@ -6,7 +6,7 @@ using System;
 public class EnemySpawner : MonoBehaviour
 {
 
-    private LootEnemy.TypeEnemy typeEnemy;
+    private Enemy.Type typeEnemy;
     public LootEnemy lootEnemy;
 
     public static int maxEnemies = 25;
@@ -24,8 +24,8 @@ public class EnemySpawner : MonoBehaviour
     public static Poolable bigBossEnemyPrefab;
 
     public Poolable[] enemyPrefabs = new Poolable[] {
-        smallBossEnemyPrefab, bigBossEnemyPrefab,
-        smallEnemyPrefab, bigEnemyPrefab
+        smallEnemyPrefab, bigEnemyPrefab,
+        smallBossEnemyPrefab, bigBossEnemyPrefab
     };
 
     public LayerMask layerMask;
