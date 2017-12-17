@@ -8,11 +8,15 @@ public class PersoMovement : MonoBehaviour
     [SerializeField]
     float speed = 1f;
 
-    // public Rect bounds;
+    public Rect bounds;
 
     void Awake()
     {
         // bounds = ScreenToRect (1f);
+		bounds.x = -0.5f;
+		bounds.y = -1.5f;
+		bounds.width = 49f;
+		bounds.height = 49f;
     }
 
     // Use this for initialization
@@ -33,7 +37,7 @@ public class PersoMovement : MonoBehaviour
         velocity *= speed * Time.deltaTime;
         // transform.position += velocity;
         transform.Translate(velocity);
-        // ClampPosition ();
+        ClampPosition ();
         // Debug.Log ("X : " + transform.position.x + ", Y :" + transform.position.y);
     }
 
@@ -44,12 +48,12 @@ public class PersoMovement : MonoBehaviour
         return new Vector3(hDirection, vDirection, 0);
     }
 
-    /* void ClampPosition() {
+    void ClampPosition() {
 		Vector3 newPosition = transform.position;
 		newPosition.x = Mathf.Clamp (transform.position.x, bounds.xMin, bounds.xMax);
 		newPosition.y = Mathf.Clamp (transform.position.y, bounds.yMin, bounds.yMax);
 		transform.position = newPosition;
-	} */
+	}
 
     /* Rect ScreenToRect(float margin) {
 		Camera cam = Camera.main;
