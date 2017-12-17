@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
 {
 
     private Enemy.Type typeEnemy;
-    public LootEnemy lootEnemy;
+    public EnemySpawnTable lootEnemy;
 
     public static int maxEnemies = 25;
     private int nbEnemiesSpawned = 0;
@@ -17,16 +17,6 @@ public class EnemySpawner : MonoBehaviour
     public float minY = -2f;
     public float maxY = 48f;
     public float minSpawnDistance = 1f;
-
-    public static Poolable smallEnemyPrefab;
-    public static Poolable bigEnemyPrefab;
-    public static Poolable smallBossEnemyPrefab;
-    public static Poolable bigBossEnemyPrefab;
-
-    public Poolable[] enemyPrefabs = new Poolable[] {
-        smallEnemyPrefab, bigEnemyPrefab,
-        smallBossEnemyPrefab, bigBossEnemyPrefab
-    };
 
     public LayerMask layerMask;
 
@@ -48,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
         {
             this.typeEnemy = lootEnemy.Choose();
 
-            GameObject obj = enemyPrefabs[(int)this.typeEnemy].GetInstance();
+            GameObject obj = lootEnemy.enemyPrefabs[(int)this.typeEnemy].GetInstance();
             obj.transform.position = position;
             obj.transform.rotation = transform.rotation;
 
@@ -71,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
         while (nbEnemiesSpawned < maxEnemies)
         {
             SpawnEnemy();
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(0f);
         }
     }
 }

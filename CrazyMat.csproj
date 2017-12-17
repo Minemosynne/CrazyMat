@@ -88,10 +88,10 @@
     <Compile Include="Assets\Scripts\Enhancement\InventoryController.cs" />
     <Compile Include="Assets\Scripts\Enhancement\WeaponEnhancement.cs" />
     <Compile Include="Assets\Scripts\Hero.cs" />
-    <Compile Include="Assets\Scripts\Loot\LootDropItem.cs" />
-    <Compile Include="Assets\Scripts\Loot\LootDropTable.cs" />
-    <Compile Include="Assets\Scripts\Loot\LootEnemy.cs" />
-    <Compile Include="Assets\Scripts\Loot\LootObject.cs" />
+    <Compile Include="Assets\Scripts\Loot-Spawn\EnemySpawnTable.cs" />
+    <Compile Include="Assets\Scripts\Loot-Spawn\ItemSpawnTable.cs" />
+    <Compile Include="Assets\Scripts\Loot-Spawn\LootDropItem.cs" />
+    <Compile Include="Assets\Scripts\Loot-Spawn\LootDropTable.cs" />
     <Compile Include="Assets\Scripts\Mapping\BigMap.cs" />
     <Compile Include="Assets\Scripts\Mapping\MiniMap.cs" />
     <Compile Include="Assets\Scripts\Mapping\Village.cs" />

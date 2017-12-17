@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LootObject : MonoBehaviour {
+public class ItemSpawnTable : ScriptableObject {
 
 	public enum TypeObject {
 		POTION, GEAR, METAIL, SCRAP 
