@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class BattleManagement : MonoBehaviour {
 
+    public SceneLoader SceneLoader;
+
     public Enemy EnemyInBattle;
     public Hero HeroInBattle;
     public List<Attack> Attacks;
@@ -18,11 +20,17 @@ public class BattleManagement : MonoBehaviour {
     private Inventory _playerInventory;
     private int _nbMaxDrop;
 
+    private GameObject _player;
+
     void Start () {
+        //Pour garder le player à la même position si retourne sur la map
+        _player = GameObject.FindGameObjectWithTag("Player");
+        //Pour ne pas le voir à l'écran
+        _player.SetActive(false);
         //Récupère Enemy
         EnemyInBattle = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>();
         GameObject.FindGameObjectWithTag("Enemy").transform.position = new Vector3(-5, 0, 10);
-        //Récupère Heros
+        //Récupère Hero
         HeroInBattle = GameObject.Find("Hero").GetComponent<Hero>();
         //Récupère la liste d'attaques
         Attacks = HeroInBattle.Weapon.Attacks;
@@ -68,13 +76,18 @@ public class BattleManagement : MonoBehaviour {
         {
             //Respawn au village - full health
             Debug.Log("---------------END BATTLE--------------");
-            //TODO changeScene villag
+            SceneLoader.LoseFight();
 
         }
-        //Retourne où il était sur la carte - health change pas
-        Debug.Log("---------------END BATTLE--------------");
-        DropItem();
-        //TODO changeScene map
+        else
+        {
+            //Retourne où il était sur la carte - health change pas
+            Debug.Log("---------------END BATTLE--------------");
+            DropItem();
+            _player.SetActive(true);
+            _player.GetComponent<Hero>().CurrentHP = HeroInBattle.CurrentHP;
+            SceneLoader.WinFight();
+        }
     }
 
     private void CreateAttackButtons(Attack attack)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BigMap : MonoBehaviour
+public class BigMap : Map
 {
 
     private static int columns = 5;
@@ -22,19 +22,18 @@ public class BigMap : MonoBehaviour
         // bigMap = new GameObject("BigMap");
 
         // Create the grid of Mini Maps
-        CreateGrid();
+        //CreateGrid();
 
         // Create the array of Mini Maps
-        CreateMiniMaps();
+        // CreateMiniMaps();
 
         // Initialize the Mini Maps
-        InitializeMiniMaps();
-    }
+        //InitializeMiniMaps();
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        //Met les bonnes boundaries au mouvement
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PersoMovement>().SetBoundaries();
+        //Positionne le joueur sur la map
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(-(Width / 2) - 2, -(Height / 2) - 2, 0);
     }
 
     void CreateGrid()

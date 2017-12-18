@@ -15,12 +15,6 @@ public class SceneLoader : MonoBehaviour
 
     // TODO menu
 
-
-    void Start()
-    {
-
-    }
-
     public void NewGame()
     {
         SceneManager.LoadScene(VillageScene);
@@ -28,6 +22,7 @@ public class SceneLoader : MonoBehaviour
 
     public void EnterWorld()
     {
+        DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Player"));
         SceneManager.LoadScene(GameScene);
     }
 
@@ -39,11 +34,14 @@ public class SceneLoader : MonoBehaviour
 
     public void LoseFight()
     {
-        //Retourne au village
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
+        Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+        SceneManager.LoadScene(VillageScene);
     }
 
     public void WinFight()
     {
-        //Retourne sur la map
+        Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+        SceneManager.LoadScene(GameScene);
     }
 }

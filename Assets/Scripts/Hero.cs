@@ -33,17 +33,9 @@ public class Hero : MonoBehaviour {
         Debug.Log("hero hp : " + CurrentHP);
         if (CurrentHP <= 0)
         {
-            Die();
             return -1;
         }
         return 0;
-    }
-
-    public void Die()
-    {
-        Debug.Log("Enemy dead");
-        //ouvre scène village; là script village spawn heros à spawnPosition & currentHp = baseHp;
-
     }
 
     public void PickUpObject()

@@ -43,11 +43,4 @@ public class Enemy : MonoBehaviour {
         }
         return 0;
     }
-
-    public void Die()
-    {
-        //TODO pool au lieu de Destroy
-        Debug.Log("Enemy dead");
-        Destroy(gameObject);
-    }
 }

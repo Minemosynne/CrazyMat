@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     public float maxX = 49f;
     public float minY = -2f;
     public float maxY = 48f;
-    public float minSpawnDistance = 1f;
+    public float minSpawnDistance = 10f;
 
     public LayerMask layerMask;
 
@@ -32,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
+        //TODO pas dans la case de départ
         Vector2 position = GetNewPosition();
 
         if (!Physics2D.OverlapCircle(position, minSpawnDistance, layerMask))

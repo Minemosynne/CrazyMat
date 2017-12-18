@@ -12,20 +12,9 @@ public class PersoMovement : MonoBehaviour
 
     void Awake()
     {
-        // bounds = ScreenToRect (1f);
-		bounds.x = -0.5f;
-		bounds.y = -1.5f;
-		bounds.width = 49f;
-		bounds.height = 49f;
+        SetBoundaries();
     }
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
         Move();
@@ -55,17 +44,13 @@ public class PersoMovement : MonoBehaviour
 		transform.position = newPosition;
 	}
 
-    /* Rect ScreenToRect(float margin) {
-		Camera cam = Camera.main;
-		Vector3 bottomLeft = cam.ScreenToWorldPoint (Vector3.zero);
-		Vector3 topRight = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f));
-
-		Rect rect = Rect.MinMaxRect (bottomLeft.x, bottomLeft.y, topRight.x, topRight.y);
-		rect.x += margin;
-		rect.y += margin;
-		rect.width -= margin * 2;
-		rect.height -= margin * 2;
-
-		return rect;
-	} */
+    public void SetBoundaries()
+    {
+        Map Map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
+        Debug.Log("New width : " + Map.Width); 
+        bounds.x = -(Map.Width/2) + 1;
+        bounds.y = -(Map.Height/2) + 1;
+        bounds.width = Map.Width -2;
+        bounds.height = Map.Height -2;
+    }
 }

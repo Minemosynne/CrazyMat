@@ -2,24 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Village : MonoBehaviour
+public class Village : Map
 {
-
-    public GameObject map;
-
-    public int width;
-    public int height;
-
-    // Use this for initialization
-    void Start()
-    {
-        // BigMap bigMap = map.GetComponent<BigMap> ();
-        Debug.Log("New Big Map !");
-    }
-
-    // Update is called once per frame
+    public GameObject Player;
+    public SceneLoader SceneLoader;
+    
     void Update()
     {
-
+        if(Player.transform.position.x >= (Width/2)-2)
+        {
+            SceneLoader.EnterWorld();
+        }
     }
 }
