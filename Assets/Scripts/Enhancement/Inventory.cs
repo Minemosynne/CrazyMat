@@ -41,7 +41,7 @@ public class Inventory : ScriptableObject {
 
     public void GetItem(LootDropItem item)
     {
-        switch (item.type)
+        switch (item.ItemType)
         {
             case LootDropItem.Type.SCRAP:
                 nbScraps++;

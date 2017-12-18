@@ -12,16 +12,16 @@ public class LootDropItem : ScriptableObject {
         POTION
     }
 
-    public Type type;
+    public Type ItemType;
     //Si une potion > 0
     [Range(0, 1)]
-    public float lifeRegenration;
+    public float LifeRegeneration;
 
-    public float probabilityWeight;
+    public float ProbabilityWeight;
 
     //Range de l'item - item choisi si valeur entre RangeFrom & RangeTo
     [HideInInspector]
-    public float probabilityRangeFrom;
+    public float ProbabilityRangeFrom;
     [HideInInspector]
-    public float probabilityRangeTo;
+    public float ProbabilityRangeTo;
 }

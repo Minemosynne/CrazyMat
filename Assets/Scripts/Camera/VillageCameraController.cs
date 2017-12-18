@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class VillageCameraController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public GameObject hero;
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }

@@ -12,11 +12,11 @@ public class EnemySpawner : MonoBehaviour
     public static int maxEnemies = 25;
     private int nbEnemiesSpawned = 0;
 
-    public float minX = -1f;
-    public float maxX = 49f;
-    public float minY = -2f;
-    public float maxY = 48f;
-    public float minSpawnDistance = 10f;
+    public float minX;
+    public float maxX;
+    public float minY;
+    public float maxY;
+    public float minSpawnDistance;
 
     public LayerMask layerMask;
 

@@ -126,7 +126,7 @@ public class BattleManagement : MonoBehaviour {
         {
             LootDropItem item = _lootDropTable.PickDroppedItem();
             _playerInventory.GetItem(item);
-            Debug.Log("---- Dropped : " + item.type + " ----");
+            Debug.Log("---- Dropped : " + item.ItemType + " ----");
         }
     }
 }

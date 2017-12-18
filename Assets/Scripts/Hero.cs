@@ -38,9 +38,10 @@ public class Hero : MonoBehaviour {
         return 0;
     }
 
-    public void PickUpObject()
+    private void PickUpObject(Item item)
     {
-        //TODO
+        Debug.Log("----------------ramassé : " + item.SpawnedItem.ItemType + "------------");
+        _playerInventory.GetItem(item.SpawnedItem);
     }
 
     public void RegenerateLife()
@@ -54,5 +55,15 @@ public class Hero : MonoBehaviour {
     {
         _playerInventory.nbPotions--;
         CurrentHP += (int)Mathf.Ceil(BaseHP * 0.1f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("--------------COLLISION-----------");
+        if (collision.GetComponentInParent<Item>())
+        {
+            PickUpObject(collision.GetComponentInParent<Item>());
+            Destroy(collision.gameObject);
+        }
     }
 }

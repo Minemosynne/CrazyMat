@@ -2,25 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSpawnTable : ScriptableObject {
+[CreateAssetMenu(menuName = "Spawn/Item Spawn table", fileName = "ItemSpawnTable")]
+public class ItemSpawnTable : ScriptableObject
+{
+    //Liste de tous les objets dropables
+    public List<GameObject> Items;
+    //Poids total de tous les objets
+    private float totalProbabilityWeight;
 
-	public enum TypeObject {
-		POTION, GEAR, METAIL, SCRAP 
-	}
+    //Assigne ranges aux objets
+    public void LoadTable()
+    {
+        if (Items != null && Items.Count > 0)
+        {
+            float currentMaxProbabilityWeight = 0f;
 
-	protected const int maxProbability = 12;
+            foreach (GameObject Object in Items)
+            {
+                Item Item = Object.GetComponent<Item>();
+                Item.SpawnedItem.ProbabilityRangeFrom = currentMaxProbabilityWeight;
+                currentMaxProbabilityWeight += Item.SpawnedItem.ProbabilityWeight;
+                Item.SpawnedItem.ProbabilityRangeTo = currentMaxProbabilityWeight;
+            }
 
-	protected int[] lootProbabilities = new int[] {
-		1, 4, 7, maxProbability
-	};
+            totalProbabilityWeight = currentMaxProbabilityWeight;
+        }
+    }
 
-	public TypeObject Choose() {
-		TypeObject typeObject = 0;
-		int randValue = Random.Range (0, maxProbability);
-		while (lootProbabilities [(int)typeObject] <= randValue) {
-			typeObject++;
-		}
-		return typeObject;
-	}
+    //Choisis l'objet qui va être droppé
+    public GameObject PickDroppedItem()
+    {
+        float pickedNumber = Random.Range(0f, totalProbabilityWeight);
+        //Trouve l'objet dont la range contient le nb
+        foreach (GameObject Object in Items)
+        {
+            Item Item = Object.GetComponent<Item>();
+            if (pickedNumber > Item.SpawnedItem.ProbabilityRangeFrom && pickedNumber <= Item.SpawnedItem.ProbabilityRangeTo)
+            {
+                return Object;
+            }
+        }
+        //Si prob, renvoie le 1er de la liste
+        return Items[0];
 
+    }
 }
