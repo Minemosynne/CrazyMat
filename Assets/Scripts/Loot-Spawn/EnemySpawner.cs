@@ -18,7 +18,8 @@ public class EnemySpawner : MonoBehaviour
     public float maxY;
     public float minSpawnDistance;
 
-    public LayerMask layerMask;
+    public LayerMask layerMaskEnemy;
+	public LayerMask layerMaskHero;
 
     void OnEnable()
     {
@@ -32,10 +33,10 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        //TODO pas dans la case de départ
+        // TODO pas dans la case de départ
         Vector2 position = GetNewPosition();
 
-        if (!Physics2D.OverlapCircle(position, minSpawnDistance, layerMask))
+		if (!Physics2D.OverlapCircle(position, minSpawnDistance, layerMaskEnemy) && !Physics2D.OverlapCircle(position, minSpawnDistance, layerMaskHero))
         {
             this.typeEnemy = lootEnemy.Choose();
 

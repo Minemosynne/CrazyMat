@@ -22,7 +22,13 @@ public class PersoMovement : MonoBehaviour
 
     void Move()
     {
-        Vector3 velocity = GetAxisVector();
+		Vector3 velocity = new Vector3();
+		if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.LeftArrow)) {
+			velocity = GetAxisVector (1);
+		} else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.DownArrow)) {
+			velocity = GetAxisVector (2);
+		}
+
         velocity *= speed * Time.deltaTime;
         // transform.position += velocity;
         transform.Translate(velocity);
@@ -30,11 +36,15 @@ public class PersoMovement : MonoBehaviour
         // Debug.Log ("X : " + transform.position.x + ", Y :" + transform.position.y);
     }
 
-    Vector3 GetAxisVector()
+	Vector3 GetAxisVector(float direct)
     {
-        float hDirection = Input.GetAxisRaw("Horizontal");
-        float vDirection = Input.GetAxisRaw("Vertical");
-        return new Vector3(hDirection, vDirection, 0);
+		if (direct == 1) {
+			float hDirection = Input.GetAxisRaw ("Horizontal");
+			return new Vector3 (hDirection, 0);
+		} else {
+			float vDirection = Input.GetAxisRaw ("Vertical");
+			return new Vector3 (0, vDirection);
+		}
     }
 
     void ClampPosition() {

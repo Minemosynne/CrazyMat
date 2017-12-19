@@ -47,9 +47,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BattleManagement.cs" />
+     <Compile Include="Assets\Scripts\Camera\GameCameraController.cs" />
+     <Compile Include="Assets\Scripts\Camera\ScreenRegion.cs" />
+     <Compile Include="Assets\Scripts\Camera\VillageCameraController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\Enhancement\Attack.cs" />
      <Compile Include="Assets\Scripts\Enhancement\Enhancement.cs" />
      <Compile Include="Assets\Scripts\Enhancement\Inventory.cs" />
@@ -57,15 +59,19 @@
      <Compile Include="Assets\Scripts\Enhancement\WeaponEnhancement.cs" />
      <Compile Include="Assets\Scripts\Hero.cs" />
      <Compile Include="Assets\Scripts\Loot-Spawn\EnemySpawnTable.cs" />
+     <Compile Include="Assets\Scripts\Loot-Spawn\EnemySpawner.cs" />
+     <Compile Include="Assets\Scripts\Loot-Spawn\Item.cs" />
      <Compile Include="Assets\Scripts\Loot-Spawn\ItemSpawnTable.cs" />
+     <Compile Include="Assets\Scripts\Loot-Spawn\ItemSpawner.cs" />
      <Compile Include="Assets\Scripts\Loot-Spawn\LootDropItem.cs" />
      <Compile Include="Assets\Scripts\Loot-Spawn\LootDropTable.cs" />
      <Compile Include="Assets\Scripts\Mapping\BigMap.cs" />
+     <Compile Include="Assets\Scripts\Mapping\Map.cs" />
      <Compile Include="Assets\Scripts\Mapping\MiniMap.cs" />
      <Compile Include="Assets\Scripts\Mapping\Village.cs" />
      <Compile Include="Assets\Scripts\Movement\PersoMovement.cs" />
-     <Compile Include="Assets\Scripts\ObjectToPickUp.cs" />
      <Compile Include="Assets\Scripts\OurEvents.cs" />
+     <Compile Include="Assets\Scripts\PickUpOnCollision.cs" />
      <Compile Include="Assets\Scripts\Pooling\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\Pooling\ObjectPoolManager.cs" />
      <Compile Include="Assets\Scripts\Pooling\Poolable.cs" />
@@ -73,6 +79,7 @@
      <Compile Include="Assets\Scripts\Singleton\Singleton.cs" />
      <Compile Include="Assets\Scripts\StartFightAfterCollision.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\item.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
