@@ -6,7 +6,10 @@ public class StartFightAfterCollision : MonoBehaviour {
 
 	public SceneLoader SceneLoader;
 
-	void OnTriggerEnter2D (Collider2D col) {
-        SceneLoader.StartFight(gameObject);
+	void OnTriggerEnter2D (Collider2D collision) {
+        if(collision.gameObject.tag == "Player")
+        {
+            SceneLoader.StartFight(gameObject);
+        }
 	}
 }
