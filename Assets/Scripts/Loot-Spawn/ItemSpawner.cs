@@ -34,8 +34,7 @@ public class ItemSpawner : MonoBehaviour {
 
     void SpawnItem()
     {
-        // TODO pas dans la case de départ
-        Vector2 position = GetNewPosition();
+        Vector3 position = GetNewPosition();
 
 		if (!Physics2D.OverlapCircle(position, minSpawnDistance, layerMaskItem) && !Physics2D.OverlapCircle(position,minSpawnDistance,layerMaskHero))
         {

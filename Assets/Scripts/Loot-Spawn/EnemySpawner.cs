@@ -33,8 +33,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        // TODO pas dans la case de départ
-        Vector2 position = GetNewPosition();
+        Vector3 position = GetNewPosition();
 
 		if (!Physics2D.OverlapCircle(position, minSpawnDistance, layerMaskEnemy) && !Physics2D.OverlapCircle(position, minSpawnDistance, layerMaskHero))
         {
