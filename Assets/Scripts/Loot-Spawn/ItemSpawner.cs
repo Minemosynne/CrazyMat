@@ -8,7 +8,7 @@ public class ItemSpawner : MonoBehaviour {
     private LootDropItem.Type Type;
     public ItemSpawnTable ItemSpawnTable;
 
-    public static int MaxItems = 7;
+    public int MaxItems;
     private int _nbItemsSpawned = 0;
 
     public float MinX;

@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     private Enemy.Type typeEnemy;
     public EnemySpawnTable lootEnemy;
 
-    public static int maxEnemies = 25;
+    public int maxEnemies;
     private int nbEnemiesSpawned = 0;
 
     public float minX;

@@ -11,7 +11,7 @@ public class Village : Map
     {
         if(Player.transform.position.x >= (Width/2)-2)
         {
-            SceneLoader.EnterWorld();
+            //SceneLoader.EnterWorld();
         }
     }
 }
