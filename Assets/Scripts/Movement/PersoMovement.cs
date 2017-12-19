@@ -57,7 +57,6 @@ public class PersoMovement : MonoBehaviour
     public void SetBoundaries()
     {
         Map Map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
-        Debug.Log("New width : " + Map.Width); 
         bounds.x = -(Map.Width/2) + 1;
         bounds.y = -(Map.Height/2) + 1;
         bounds.width = Map.Width -2;

@@ -82,7 +82,6 @@
     <Compile Include="Assets\Scripts\Camera\GameCameraController.cs" />
     <Compile Include="Assets\Scripts\Camera\ScreenRegion.cs" />
     <Compile Include="Assets\Scripts\Camera\VillageCameraController.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enhancement\Attack.cs" />
     <Compile Include="Assets\Scripts\Enhancement\Enhancement.cs" />
@@ -102,8 +101,6 @@
     <Compile Include="Assets\Scripts\Mapping\MiniMap.cs" />
     <Compile Include="Assets\Scripts\Mapping\Village.cs" />
     <Compile Include="Assets\Scripts\Movement\PersoMovement.cs" />
-    <Compile Include="Assets\Scripts\OurEvents.cs" />
-    <Compile Include="Assets\Scripts\PickUpOnCollision.cs" />
     <Compile Include="Assets\Scripts\Pooling\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Pooling\ObjectPoolManager.cs" />
     <Compile Include="Assets\Scripts\Pooling\Poolable.cs" />

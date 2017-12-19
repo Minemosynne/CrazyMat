@@ -5,30 +5,37 @@ using UnityEngine;
 public class BigMap : Map
 {
 
-    private static int columns = 5;
-    private static int rows = 5;
-    private int nbMaps = columns * rows;
+    public int Columns;
+    public int Rows;
+    private int _nbMaps;
+
+    public int MiniMapWidth;
+    public int MiniMapHeight;
 
     public GameObject bigMap;
-    public GameObject miniMap;
+    public GameObject MiniMap;
+    public GameObject ScreenRegion;
+
     public MiniMap currentMap;
-    public MiniMap[] miniMaps;
+    public MiniMap[] MiniMaps;
     public MiniMap[,] grid;
 
     // Use this for initialization
     void Start()
     {
+        _nbMaps = Columns * Rows;
         // Create the GameObject Big Map
-        // bigMap = new GameObject("BigMap");
+        //Useful??
+        bigMap = new GameObject("BigMap");
 
         // Create the grid of Mini Maps
-        //CreateGrid();
+        CreateGrid();
 
         // Create the array of Mini Maps
-        // CreateMiniMaps();
+        CreateMiniMaps();
 
         // Initialize the Mini Maps
-        //InitializeMiniMaps();
+        InitializeMiniMaps();
 
         //Met les bonnes boundaries au mouvement
         GameObject.FindGameObjectWithTag("Player").GetComponent<PersoMovement>().SetBoundaries();
@@ -38,55 +45,58 @@ public class BigMap : Map
 
     void CreateGrid()
     {
-        grid = new MiniMap[columns, rows];
-        for (int i = 0; i < columns; i++)
+        //For the tiles
+        /*grid = new MiniMap[Columns, Rows];
+        for (int i = 0; i < Columns; i++)
         {
-            for (int j = 0; j < rows; j++)
+            for (int j = 0; j < Rows; j++)
             {
                 grid[i, j] = new MiniMap();
 
             }
-        }
+        }*/
     }
 
     void CreateMiniMaps()
     {
-        miniMaps = new MiniMap[nbMaps];
-        float posX;
-        float posY = transform.position.y - 10;
-        // float posZ = transform.position.z;
-        for (int i = 0; i < rows; i++)
+        MiniMaps = new MiniMap[_nbMaps];
+        float posX = transform.position.x;
+        float posY = transform.position.y;
+        for (int i = 0; i < Rows; i++)
         {
-            posX = transform.position.x + 10;
-            posY += 10;
-            for (int j = 0; j < columns; j++)
+            for (int j = 0; j < Columns; j++)
             {
-                miniMap = Instantiate(miniMap, new Vector3(posX, posY), transform.rotation);
-                miniMaps[i] = miniMap.GetComponent<MiniMap>();
-                miniMaps[i].xPos = posX;
-                miniMaps[i].yPos = posY;
-                // transform.rotation = new Quaternion (-90, 0, 0, 0);
-                posX += 10;
+                MiniMaps[i] = new MiniMap
+                {
+                    XPos = posX,
+                    YPos = posY
+                };
+                //Instantie les screen region nécessaires pour le mouvement de la caméra
+                Instantiate(ScreenRegion, new Vector3(posX, posY), Quaternion.identity);
+                //Instantiate(MiniMap, new Vector3(posX, posY), transform.rotation);
+                posX += MiniMapWidth + 1;
             }
+            posX = transform.position.x;
+            posY += MiniMapHeight + 1;
         }
     }
 
     void InitializeMiniMaps()
     {
-        for (int i = 0; i < miniMaps.Length; i++)
+       /* for (int i = 0; i < MiniMaps.Length; i++)
         {
-            currentMap = miniMaps[i];
+            currentMap = MiniMaps[i];
             // Initialize its width
-            for (int j = 0; j < columns; j++)
+            for (int j = 0; j < Columns; j++)
             {
-                float coordX = currentMap.xPos + j;
+                float coordX = currentMap.XPos + j;
                 // Initialize its height
-                for (int k = 0; k < rows; k++)
+                for (int k = 0; k < Rows; k++)
                 {
-                    float coordY = currentMap.yPos + k;
-                    grid[(int)coordX, (int)coordY] = miniMaps[i];
+                    float coordY = currentMap.YPos + k;
+                    grid[(int)coordX, (int)coordY] = MiniMaps[i];
                 }
             }
-        }
+        }*/
     }
 }
