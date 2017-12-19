@@ -15,10 +15,10 @@ public class ItemSpawner : MonoBehaviour {
     public float MaxX;
     public float MinY;
     public float MaxY;
-    public float minSpawnDistance;
+    public float MinSpawnDistance;
 
-    public LayerMask layerMaskItem;
-	public LayerMask layerMaskHero;
+    public LayerMask LayerMaskItem;
+	public LayerMask LayerMaskHero;
 
     void OnEnable()
     {
@@ -36,7 +36,7 @@ public class ItemSpawner : MonoBehaviour {
     {
         Vector3 position = GetNewPosition();
 
-		if (!Physics2D.OverlapCircle(position, minSpawnDistance, layerMaskItem) && !Physics2D.OverlapCircle(position,minSpawnDistance,layerMaskHero))
+		if (!Physics2D.OverlapCircle(position, MinSpawnDistance, LayerMaskItem) && !Physics2D.OverlapCircle(position,MinSpawnDistance,LayerMaskHero))
         {
 
             GameObject item = ItemSpawnTable.PickDroppedItem();

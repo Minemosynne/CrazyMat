@@ -19,8 +19,7 @@ public class BigMap : Map
     public MiniMap currentMap;
     public MiniMap[] MiniMaps;
     public MiniMap[,] grid;
-
-    // Use this for initialization
+    
     void Start()
     {
         _nbMaps = Columns * Rows;
