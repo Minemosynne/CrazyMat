@@ -8,8 +8,9 @@ public class Village : Map
     public SceneLoader SceneLoader;
     
     void Update()
-    {
-        if(Player.transform.position.x >= (Width/2)-2)
+    {	
+		// Passe à la scène de Jeu lorsque le héros arrive aux limites à droite du village
+        if (Player.transform.position.x >= (Width/2)-2)
         {
             SceneLoader.EnterWorld();
         }

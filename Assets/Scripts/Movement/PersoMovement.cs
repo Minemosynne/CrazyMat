@@ -4,40 +4,43 @@ using UnityEngine;
 
 public class PersoMovement : MonoBehaviour
 {
-
+	
     [SerializeField]
+	// Vitesse de déplacement
     float speed = 1f;
 
     public Rect bounds;
 
-    void Awake()
-    {
+    void Awake() {
         SetBoundaries();
     }
     
-    void Update()
-    {
+    void Update() {
         Move();
     }
 
-    void Move()
-    {
+	// Méthode de déplacement du joueur
+    void Move() {
 		Vector3 velocity = new Vector3();
+
+		// Si le joueur se déplace vers la droite ou vers la gauche
 		if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.LeftArrow)) {
 			velocity = GetAxisVector (1);
-		} else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.DownArrow)) {
+		}
+
+		// Si le joueur se déplace vers le haut ou vers le bas
+		else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.DownArrow)) {
 			velocity = GetAxisVector (2);
 		}
 
+		// Appliquer le déplacement
         velocity *= speed * Time.deltaTime;
-        // transform.position += velocity;
         transform.Translate(velocity);
         ClampPosition ();
-        // Debug.Log ("X : " + transform.position.x + ", Y :" + transform.position.y);
     }
 
-	Vector3 GetAxisVector(float direct)
-    {
+	// Récupère le déplacement horizontal ou vertical dans un vecteur
+	Vector3 GetAxisVector(float direct) {
 		if (direct == 1) {
 			float hDirection = Input.GetAxisRaw ("Horizontal");
 			return new Vector3 (hDirection, 0);
@@ -54,8 +57,8 @@ public class PersoMovement : MonoBehaviour
 		transform.position = newPosition;
 	}
 
-    public void SetBoundaries()
-    {
+	// Met des limites de déplacement au joueur dans la map
+    public void SetBoundaries() {
         Map Map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
         bounds.x = -(Map.Width/2) + 1;
         bounds.y = -(Map.Height/2) + 1;

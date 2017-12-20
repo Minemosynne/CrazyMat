@@ -4,12 +4,12 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Loot/Loot drop table", fileName = "LootDropTable")]
 public class LootDropTable : ScriptableObject{
-    //Liste de tous les objets dropables
+    // Liste de tous les objets dropables
     public List<LootDropItem> LootDropItems;
-    //Poids total de tous les objets
+    // Poids total de tous les objets
     private float TotalProbabilityWeight;
 
-    //Assigne ranges aux objets
+    // Assigne ranges aux objets
     public void LoadTable()
     {
         if(LootDropItems != null && LootDropItems.Count > 0)
@@ -27,11 +27,11 @@ public class LootDropTable : ScriptableObject{
         }
     }
 
-    //Choisis l'objet qui va être droppé
+    // Choisit l'objet qui va être droppé
     public LootDropItem PickDroppedItem()
     {
         float pickedNumber = Random.Range(0f, TotalProbabilityWeight);
-        //Trouve l'objet dont la range contient le nb
+        // Trouve l'objet dont la range contient le nb
         foreach(LootDropItem lootDropItem in LootDropItems)
         {
             if(pickedNumber > lootDropItem.ProbabilityRangeFrom && pickedNumber <= lootDropItem.ProbabilityRangeTo)
@@ -39,7 +39,7 @@ public class LootDropTable : ScriptableObject{
                 return lootDropItem;
             }
         }
-        //Si prob, renvoie le 1er de la liste
+        // Si prob, renvoie le 1er de la liste
         return LootDropItems[0];
 
     }

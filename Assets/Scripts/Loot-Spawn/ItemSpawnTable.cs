@@ -5,12 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Spawn/Item Spawn table", fileName = "ItemSpawnTable")]
 public class ItemSpawnTable : ScriptableObject
 {
-    //Liste de tous les objets dropables
+    // Liste de tous les objets dropables
     public List<GameObject> Items;
-    //Poids total de tous les objets
+    // Poids total de tous les objets
     private float totalProbabilityWeight;
 
-    //Assigne ranges aux objets
+    // Assigne ranges aux objets
     public void LoadTable()
     {
         if (Items != null && Items.Count > 0)
@@ -29,7 +29,7 @@ public class ItemSpawnTable : ScriptableObject
         }
     }
 
-    //Choisis l'objet qui va être droppé
+    // Choisit l'objet qui va être droppé
     public GameObject PickDroppedItem()
     {
         float pickedNumber = Random.Range(0f, totalProbabilityWeight);
@@ -42,7 +42,7 @@ public class ItemSpawnTable : ScriptableObject
                 return Object;
             }
         }
-        //Si prob, renvoie le 1er de la liste
+        // Si prob, renvoie le 1er de la liste
         return Items[0];
 
     }

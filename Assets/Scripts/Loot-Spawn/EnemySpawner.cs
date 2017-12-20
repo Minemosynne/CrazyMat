@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class EnemySpawner : MonoBehaviour
-{
-
+public class EnemySpawner : MonoBehaviour {
+	
     private Enemy.Type typeEnemy;
     public EnemySpawnTable lootEnemy;
 
+	// Nombre max d'ennemis sur la carte
     public int maxEnemies;
+	// Nombre d'ennemis spawnés sur la carte
     private int nbEnemiesSpawned = 0;
 
     public float minX;
@@ -20,25 +21,28 @@ public class EnemySpawner : MonoBehaviour
 
     public LayerMask layerMaskEnemy;
 	public LayerMask layerMaskHero;
+	public LayerMask layerMaskItem;
 
-    void OnEnable()
-    {
+    void OnEnable() {
         StartCoroutine(SpawnCoroutine());
     }
 
-    void OnDisable()
-    {
+    void OnDisable() {
         StopAllCoroutines();
     }
 
-    void SpawnEnemy()
-    {
+	// Spawn un ennemi sur la carte
+    void SpawnEnemy() {
         Vector3 position = GetNewPosition();
 
-		if (!Physics2D.OverlapCircle(position, minSpawnDistance, layerMaskEnemy) && !Physics2D.OverlapCircle(position, minSpawnDistance, layerMaskHero))
-        {
+		// Vérification dans un rayon de 'minSpawnDistance' qu'il n'y a pas déjà un autre ennemi, un item ou le héros
+		if (!Physics2D.OverlapCircle(position, minSpawnDistance, layerMaskEnemy)
+			&& !Physics2D.OverlapCircle(position, minSpawnDistance, layerMaskHero)
+			&& !Physics2D.OverlapCircle(position, minSpawnDistance, layerMaskItem)) {
+			// Choisit le type d'ennemi à spawner
             this.typeEnemy = lootEnemy.Choose();
 
+			// Récupère l'ennemi à spawner
             GameObject obj = lootEnemy.enemyPrefabs[(int)this.typeEnemy].GetInstance();
             obj.transform.position = position;
             obj.transform.rotation = transform.rotation;
@@ -49,19 +53,19 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    Vector3 GetNewPosition()
-    {
+	// Récupère la position aléatoire où l'ennemi sera spawné
+    Vector3 GetNewPosition() {
         Vector3 tmp = transform.position;
         tmp.x = UnityEngine.Random.Range(minX, maxX);
         tmp.y = UnityEngine.Random.Range(minY, maxY);
         return tmp;
     }
 
-    IEnumerator SpawnCoroutine()
-    {
-        while (nbEnemiesSpawned < maxEnemies)
-        {
+	// Coroutine de spwan des ennemis
+	IEnumerator SpawnCoroutine() {
+        while (nbEnemiesSpawned < maxEnemies) {	
             SpawnEnemy();
+			// Spawn de tous les ennemis à la fois
             yield return new WaitForSeconds(0f);
         }
     }

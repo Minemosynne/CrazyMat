@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Poolable : MonoBehaviour
-{
+public class Poolable : MonoBehaviour {
 
     public bool isPooled;
 
-    public void SetPooled(bool mode)
-    {
+	// Met l'objet à jour en 'poolé'
+    public void SetPooled(bool mode) {
         gameObject.SetActive(!mode);
         isPooled = mode;
     }
 
-    public bool TryPool()
-    {
-        if (isPooled)
-        {
+	// Pool l'objet
+    public bool TryPool() {
+        if (isPooled) {
             Debug.LogWarning("Trying to pool an already pooled object");
             return false;
         }
@@ -24,8 +22,8 @@ public class Poolable : MonoBehaviour
         return isPooled;
     }
 
-    public GameObject GetInstance()
-    {
+	// Récupère une instance de l'objet 
+    public GameObject GetInstance() {
         GameObject obj = ObjectPoolManager.Instance.GetObject(gameObject);
         obj.GetComponent<Poolable>().SetPooled(false);
         return obj;

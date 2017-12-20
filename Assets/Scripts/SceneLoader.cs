@@ -13,34 +13,35 @@ public class SceneLoader : MonoBehaviour
     // Scène de jeu - carte
     public string GameScene;
 
-    // TODO menu
+    // Scène de menu
+	public string MenuScene;
 
-    public void NewGame()
-    {
+	// Lancement de la scène Depart
+    public void NewGame() {
         SceneManager.LoadScene(VillageScene);
     }
 
-    public void EnterWorld()
-    {
+	// Lancement de la scène Jeu
+    public void EnterWorld() {
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Player"));
         SceneManager.LoadScene(GameScene);
     }
 
-    public void StartFight(GameObject enemy)
-    {
+	// Lancement de la scène FightScene
+    public void StartFight(GameObject enemy) {
         DontDestroyOnLoad(enemy);
         SceneManager.LoadScene(FightScene);
     }
 
-    public void LoseFight()
-    {
+	// Retour à la scène Depart en cas de perte du combat
+    public void LoseFight() {
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         SceneManager.LoadScene(VillageScene);
     }
 
-    public void WinFight()
-    {
+	// Retour à la scène Jeu en cas de gain du combat
+    public void WinFight() {
         Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         SceneManager.LoadScene(GameScene);
     }
