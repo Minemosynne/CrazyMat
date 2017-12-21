@@ -7,9 +7,9 @@ public class PersoMovement : MonoBehaviour
 	
     [SerializeField]
 	// Vitesse de déplacement
-    float speed = 1f;
+    private float _speed = 1f;
 
-    public Rect bounds;
+    private Rect _bounds;
 
     void Awake() {
         SetBoundaries();
@@ -34,7 +34,7 @@ public class PersoMovement : MonoBehaviour
 		}
 
 		// Appliquer le déplacement
-        velocity *= speed * Time.deltaTime;
+        velocity *= _speed * Time.deltaTime;
         transform.Translate(velocity);
         ClampPosition ();
     }
@@ -50,19 +50,22 @@ public class PersoMovement : MonoBehaviour
 		}
     }
 
-    void ClampPosition() {
-		Vector3 newPosition = transform.position;
-		newPosition.x = Mathf.Clamp (transform.position.x, bounds.xMin, bounds.xMax);
-		newPosition.y = Mathf.Clamp (transform.position.y, bounds.yMin, bounds.yMax);
-		transform.position = newPosition;
-	}
+    //Pour empêcher je joueur de sortir de la map
+    void ClampPosition()
+    {
+        Vector3 newPosition = transform.position;
+        newPosition.x = Mathf.Clamp(transform.position.x, _bounds.xMin, _bounds.xMax);
+        newPosition.y = Mathf.Clamp(transform.position.y, _bounds.yMin, _bounds.yMax);
+        transform.position = newPosition;
+    }
 
-	// Met des limites de déplacement au joueur dans la map
-    public void SetBoundaries() {
+    //Pour récupérer les bounds de la nouvelle map
+    public void SetBoundaries()
+    {
         Map Map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
-        bounds.x = -(Map.Width/2) + 1;
-        bounds.y = -(Map.Height/2) + 1;
-        bounds.width = Map.Width -2;
-        bounds.height = Map.Height -2;
+        _bounds.x = Map.MinX + 1;
+        _bounds.y = Map.MinY + 1;
+        _bounds.width = Map.Width - 2;
+        _bounds.height = Map.Height - 2;
     }
 }

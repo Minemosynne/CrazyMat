@@ -4,5 +4,4 @@ using UnityEngine;
 
 public class Item : MonoBehaviour {
     public LootDropItem SpawnedItem;
-    //TODO sprite
 }

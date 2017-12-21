@@ -8,7 +8,7 @@ public class ItemSpawnTable : ScriptableObject
     // Liste de tous les objets dropables
     public List<GameObject> Items;
     // Poids total de tous les objets
-    private float totalProbabilityWeight;
+    private float _totalProbabilityWeight;
 
     // Assigne ranges aux objets
     public void LoadTable()
@@ -25,14 +25,14 @@ public class ItemSpawnTable : ScriptableObject
                 Item.SpawnedItem.ProbabilityRangeTo = currentMaxProbabilityWeight;
             }
 
-            totalProbabilityWeight = currentMaxProbabilityWeight;
+            _totalProbabilityWeight = currentMaxProbabilityWeight;
         }
     }
 
     // Choisit l'objet qui va être droppé
     public GameObject PickDroppedItem()
     {
-        float pickedNumber = Random.Range(0f, totalProbabilityWeight);
+        float pickedNumber = Random.Range(0f, _totalProbabilityWeight);
         //Trouve l'objet dont la range contient le nb
         foreach (GameObject Object in Items)
         {
@@ -42,7 +42,7 @@ public class ItemSpawnTable : ScriptableObject
                 return Object;
             }
         }
-        // Si prob, renvoie le 1er de la liste
+        // Si problème, renvoie le 1er de la liste
         return Items[0];
 
     }

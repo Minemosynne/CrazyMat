@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleManagement : MonoBehaviour {
+public class BattleManagement : MonoBehaviour
+{
 
     public SceneLoader SceneLoader;
 
@@ -22,12 +23,13 @@ public class BattleManagement : MonoBehaviour {
 
     private GameObject _player;
 
-    void Start () {
+    void Start()
+    {
         //Pour garder le player à la même position si retourne sur la map
         _player = GameObject.FindGameObjectWithTag("Player");
         //Pour ne pas le voir à l'écran
         _player.SetActive(false);
-        //Récupère Enemy
+        //Récupère Enemy et le positionne sur la scène de combat
         EnemyInBattle = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>();
         GameObject.FindGameObjectWithTag("Enemy").transform.position = new Vector3(-5, 0, 10);
         //Récupère Hero
@@ -36,7 +38,7 @@ public class BattleManagement : MonoBehaviour {
         Attacks = HeroInBattle.Weapon.Attacks;
         //Crée les boutons d'attaque
         CreateAttackButtons(HeroInBattle.Weapon.BaseAttack);
-        foreach(Attack a in Attacks)
+        foreach (Attack a in Attacks)
         {
             CreateAttackButtons(a);
         }
@@ -45,6 +47,7 @@ public class BattleManagement : MonoBehaviour {
         SetNbMaxDrop();
     }
 
+    //Appelée à chaque fois que le joueur clique sur une attaque
     public void Battle(Attack attack)
     {
         int damage;
@@ -67,7 +70,7 @@ public class BattleManagement : MonoBehaviour {
                 HeroInBattle.RegenerateLife();
             }
 
-        }   
+        }
     }
 
     private void EndBattle(bool lost)
@@ -90,6 +93,7 @@ public class BattleManagement : MonoBehaviour {
         }
     }
 
+    //Initialise les boutons d'attaque
     private void CreateAttackButtons(Attack attack)
     {
         GameObject AttackButton = Instantiate(ActionButton) as GameObject;
@@ -99,6 +103,7 @@ public class BattleManagement : MonoBehaviour {
         AttackButton.transform.SetParent(Spacer, false);
     }
 
+    //Initialise le nombre maximum d'items dropped en fonction du type de l'ennemi
     private void SetNbMaxDrop()
     {
         switch (EnemyInBattle.type)
@@ -118,6 +123,7 @@ public class BattleManagement : MonoBehaviour {
         }
     }
 
+    //Choisit les différents items dropped
     private void DropItem()
     {
         int nbItemsDropped = Random.Range(1, _nbMaxDrop);
@@ -125,6 +131,7 @@ public class BattleManagement : MonoBehaviour {
         for (int i = 0; i < nbItemsDropped; i++)
         {
             LootDropItem item = _lootDropTable.PickDroppedItem();
+            //TODO appeler inventoryController plutôt
             _playerInventory.GetItem(item);
             Debug.Log("---- Dropped : " + item.ItemType + " ----");
         }

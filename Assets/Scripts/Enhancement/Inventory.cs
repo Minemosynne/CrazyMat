@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Enhancement/Inventory", fileName = "InventoryData")]
-public class Inventory : ScriptableObject {
+public class Inventory : ScriptableObject
+{
     public Weapon Weapon;
     [Header("Lists")]
     public List<Enhancement> UnlockedEnhancements = new List<Enhancement>();
@@ -20,6 +21,8 @@ public class Inventory : ScriptableObject {
         AttackEnhancements.Remove(enhancement);
         enhancement.unlocked = true;
         UnlockedEnhancements.Add(enhancement);
+        //Si attaque basique -> remplace attaque de base quand débloquée
+        //Sinon -> ajoutée à la liste d'attaques sup débloquées
         if (enhancement.basic)
         {
             Weapon.EnhanceBaseAttack(enhancement);
@@ -56,5 +59,10 @@ public class Inventory : ScriptableObject {
                 nbPotions++;
                 break;
         }
+    }
+
+    public void DrinkPotion()
+    {
+        nbPotions--;
     }
 }

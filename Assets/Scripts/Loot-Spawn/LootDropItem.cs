@@ -17,6 +17,8 @@ public class LootDropItem : ScriptableObject {
     [Range(0, 1)]
     public float LifeRegeneration;
 
+    public Sprite sprite;
+
     public float ProbabilityWeight;
 
     // Range de l'item - item choisi si valeur entre RangeFrom & RangeTo

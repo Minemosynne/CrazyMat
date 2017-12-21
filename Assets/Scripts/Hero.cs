@@ -41,6 +41,7 @@ public class Hero : MonoBehaviour {
     private void PickUpObject(Item item)
     {
         Debug.Log("----------------ramassé : " + item.SpawnedItem.ItemType + "------------");
+        //TODO utiliser inventoryController plutôt
         _playerInventory.GetItem(item.SpawnedItem);
     }
 
@@ -53,6 +54,8 @@ public class Hero : MonoBehaviour {
 
     public void UsePotion()
     {
+        //TODO utiliser inventoryController plutôt
+        //TODO with correct float, not 0.1f
         _playerInventory.nbPotions--;
         CurrentHP += (int)Mathf.Ceil(BaseHP * 0.1f);
     }

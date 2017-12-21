@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Weapon/Weapon", fileName = "Weapon")]
-public class Weapon : ScriptableObject {
+public class Weapon : ScriptableObject
+{
 
     public Attack BaseAttack;
 
@@ -14,7 +15,7 @@ public class Weapon : ScriptableObject {
     }
 
     public Type type;
-    
+
     public float velocity;
     public float weight;
     [Range(0, 1)]
@@ -23,16 +24,19 @@ public class Weapon : ScriptableObject {
     public List<Attack> Attacks = new List<Attack>();
     public List<WeaponEnhancement> WeaponEnhancements = new List<WeaponEnhancement>();
 
+    //Ajoute une attaque à la liste d'attaques supplémentaires débloquées
     public void AddAttack(Attack attack)
     {
         Attacks.Add(attack);
     }
 
+    //Remplace l'attaque de base par une autre
     public void EnhanceBaseAttack(Attack attack)
     {
         BaseAttack = attack;
     }
 
+    //Ajoute l'amélioration d'arme à la liste d'améliorations débloquées
     public void EnhanceSpecifications(WeaponEnhancement enhancement)
     {
         WeaponEnhancements.Add(enhancement);

@@ -39,7 +39,7 @@ public class LootDropTable : ScriptableObject{
                 return lootDropItem;
             }
         }
-        // Si prob, renvoie le 1er de la liste
+        // Si problème, renvoie le 1er de la liste
         return LootDropItems[0];
 
     }

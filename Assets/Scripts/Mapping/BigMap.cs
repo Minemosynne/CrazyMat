@@ -14,19 +14,20 @@ public class BigMap : Map {
     public GameObject MiniMap;
     public GameObject ScreenRegion;
 
+    private Transform _bigMap;
+
     public MiniMap[] MiniMaps;
     // public MiniMap[,] grid;
     
     void Start() {
+        _bigMap = GameObject.FindGameObjectWithTag("Map").transform;
         _nbMaps = Columns * Rows;
 
-        // Crée le tableau de Mini Maps
+        // Crée le tableau de Mini Maps et initalise les Mini maps
         CreateMiniMaps();
 
         // Met les bonnes boundaries au mouvement
         GameObject.FindGameObjectWithTag("Player").GetComponent<PersoMovement>().SetBoundaries();
-        // Positionne le joueur sur la map
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(-(Width / 2) - 2, -(Height / 2) - 2, 0);
     }
 
     void CreateMiniMaps() {
@@ -39,13 +40,12 @@ public class BigMap : Map {
                     XPos = posX,
                     YPos = posY
                 };
-                // Instancie les screen region nécessaire pour le mouvement de la caméra
+                // Instancie les ScreenRegion nécessaires pour le mouvement de la caméra
                 Instantiate(ScreenRegion, new Vector3(posX, posY), Quaternion.identity);
-                // Instantiate(MiniMap, new Vector3(posX, posY), transform.rotation);
-                posX += MiniMapWidth + 1;
+                posX += MiniMapWidth;
             }
             posX = transform.position.x;
-            posY += MiniMapHeight + 1;
+            posY += MiniMapHeight;
         }
     }
 

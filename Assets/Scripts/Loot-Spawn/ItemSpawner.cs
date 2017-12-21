@@ -11,7 +11,9 @@ public class ItemSpawner : MonoBehaviour {
 	// Nombre max d'items sur la carte
     public int MaxItems;
 	// Nombre d'items spawnés sur la carte
-    private int nbItemsSpawned = 0;
+    private int _nbItemsSpawned = 0;
+    //Pour instantier les items en enfants de bigMap
+    private Transform _bigMap;
 
     public float MinX;
     public float MaxX;
@@ -24,6 +26,7 @@ public class ItemSpawner : MonoBehaviour {
 	public LayerMask LayerMaskEnemy;
 
     void OnEnable() {
+        _bigMap = GameObject.FindGameObjectWithTag("Map").transform;
         ItemSpawnTable.LoadTable();
         Debug.Log("-----------Table--------------");
         StartCoroutine(SpawnCoroutine());
@@ -49,7 +52,7 @@ public class ItemSpawner : MonoBehaviour {
             item.transform.position = position;
             item.transform.rotation = transform.rotation;
 
-            nbItemsSpawned++;
+            _nbItemsSpawned++;
         }
     }
 
@@ -63,7 +66,7 @@ public class ItemSpawner : MonoBehaviour {
 
 	// Coroutine de spawn des items
     IEnumerator SpawnCoroutine() {
-        while (nbItemsSpawned < MaxItems) {
+        while (_nbItemsSpawned < MaxItems) {
             SpawnItem();
 			// Spawn de tous les items à la fois
             yield return new WaitForSeconds(0f);

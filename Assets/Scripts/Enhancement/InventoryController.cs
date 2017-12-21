@@ -58,10 +58,15 @@ public class InventoryController : MonoBehaviour {
 
     private void Update()
     {
-        //Si player appuie sur I -> ouvre inventaire; si ouvert -> ferme inventaire
+        //Si joueur appuie sur I -> ouvre inventaire; si ouvert -> ferme inventaire
         if (Input.GetKeyDown(KeyCode.I))
         {
             ToggleWindow();
+        }
+        //Si joueur appuie sur u -> boit potion
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            DrinkPotion();
         }
     }
 
@@ -162,6 +167,8 @@ public class InventoryController : MonoBehaviour {
         }
     }
 
+    //Récupère tous les ingrédients nécessaires pour débloquer l'Enhancement
+    //Affiche en rouge si le joueur n'en possède pas assez
     private void AddRecipyText(GameObject newEnhancement, Enhancement enhancement)
     {
         Text recipyText;
@@ -185,6 +192,7 @@ public class InventoryController : MonoBehaviour {
         }
     }
 
+    //Affiche "Get" button à côté de l'Enhancement si le joueur a les ingrédients nécessaires
     private void EnableGetButton(Enhancement enhancement, GameObject newEnhancement)
     {
         if(_inventoryDetails.nbScraps >= enhancement.nbScrapsNeeded && _inventoryDetails.nbGears >= enhancement.nbGearsNeeded && _inventoryDetails.nbMetals >= enhancement.nbMetalsNeeded)
@@ -260,6 +268,7 @@ public class InventoryController : MonoBehaviour {
         }
     }
 
+    //Vérifie que l'Enhancement se trouve bien dans les Data
     private int CheckExistenceOfEnhancement(Enhancement enhancement)
     {
         //Si on ne trouve pas l'amélioration ou le héros n'a pas assez pour le débloquer
@@ -276,6 +285,7 @@ public class InventoryController : MonoBehaviour {
         return 0;
     }
 
+    //Met à jour le nombre d'items ramassés après le débloquage d'un Enhancement
     private void UpdateNbObjects(Enhancement enhancement)
     {
         //Retirer Scraps/Gears/Metals utilisés de l'inventaire du héros
@@ -284,6 +294,7 @@ public class InventoryController : MonoBehaviour {
         _inventoryDetails.nbMetals -= enhancement.nbMetalsNeeded;
     }
 
+    //Appelé quand un Enhancement est débloqué pour vider l'affichage de l'inventaire pour ensuite mettre à jour
     private void UpdateContents()
     {
         ClearInventory();
@@ -294,8 +305,22 @@ public class InventoryController : MonoBehaviour {
     }
 
     //---------------------------------------------------Récupérer loot---------------------------------------------------
-    public void GetLootDropped()
+    public void GetLootDropped(LootDropItem item)
     {
+        _inventoryDetails.GetItem(item);
+    }
 
+    //---------------------------------------------------Boire potion---------------------------------------------------
+    public void DrinkPotion()
+    {
+        Debug.Log("---Drink potion---");
+        if (_inventoryDetails.nbPotions != 0)
+        {
+            _inventoryDetails.DrinkPotion();
+        }
+        else
+        {
+            //TODO afficher msg indiquant plus de potion
+        }
     }
 }

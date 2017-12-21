@@ -12,6 +12,8 @@ public class EnemySpawner : MonoBehaviour {
     public int maxEnemies;
 	// Nombre d'ennemis spawnés sur la carte
     private int nbEnemiesSpawned = 0;
+    //Pour instantier les ennemis en enfants de la bigMap
+    private Transform bigMap;
 
     public float minX;
     public float maxX;
@@ -24,6 +26,7 @@ public class EnemySpawner : MonoBehaviour {
 	public LayerMask layerMaskItem;
 
     void OnEnable() {
+        bigMap = GameObject.FindGameObjectWithTag("Map").transform;
         StartCoroutine(SpawnCoroutine());
     }
 
@@ -42,7 +45,7 @@ public class EnemySpawner : MonoBehaviour {
 			// Choisit le type d'ennemi à spawner
             this.typeEnemy = lootEnemy.Choose();
 
-			// Récupère l'ennemi à spawner
+            // Récupère l'ennemi à spawner
             GameObject obj = lootEnemy.enemyPrefabs[(int)this.typeEnemy].GetInstance();
             obj.transform.position = position;
             obj.transform.rotation = transform.rotation;
