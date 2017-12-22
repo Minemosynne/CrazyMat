@@ -9,5 +9,5 @@ public class MiniMap
     public int RoomWidth;
     public int RoomHeight;
 
-    //Sprite
+    public GameObject Ground;
 }

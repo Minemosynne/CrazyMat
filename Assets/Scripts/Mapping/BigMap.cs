@@ -14,13 +14,10 @@ public class BigMap : Map {
     public GameObject MiniMap;
     public GameObject ScreenRegion;
 
-    private Transform _bigMap;
-
     public MiniMap[] MiniMaps;
-    // public MiniMap[,] grid;
+    public GameObject[] Grounds;
     
     void Start() {
-        _bigMap = GameObject.FindGameObjectWithTag("Map").transform;
         _nbMaps = Columns * Rows;
 
         // Crée le tableau de Mini Maps et initalise les Mini maps
@@ -38,15 +35,22 @@ public class BigMap : Map {
             for (int j = 0; j < Columns; j++) {
                 MiniMaps[i] = new MiniMap {
                     XPos = posX,
-                    YPos = posY
+                    YPos = posY,
+                    Ground = ChooseAGround()
                 };
                 // Instancie les ScreenRegion nécessaires pour le mouvement de la caméra
                 Instantiate(ScreenRegion, new Vector3(posX, posY), Quaternion.identity);
+                Instantiate(MiniMaps[i].Ground, new Vector3(posX + 4, posY - 4), Quaternion.identity);
                 posX += MiniMapWidth;
             }
             posX = transform.position.x;
             posY += MiniMapHeight;
         }
+    }
+
+    private GameObject ChooseAGround()
+    {
+        return Grounds[Random.Range(0, Grounds.Length)];
     }
 
 	/*void CreateGrid() {
