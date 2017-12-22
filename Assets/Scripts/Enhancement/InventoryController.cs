@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine;
 
 public class InventoryController : MonoBehaviour {
 
@@ -15,6 +15,10 @@ public class InventoryController : MonoBehaviour {
     private GameObject _enhancementTemplate;
     [SerializeField]
     private GameObject _unlockedEnhancTemplate;
+    [SerializeField]
+    private GameObject _inventoryButton;
+    [SerializeField]
+    private GameObject _potionButton;
 
     private Transform _scrollViewAttacksContent;
     private Transform _scrollViewWeapEnhancContent;
@@ -58,7 +62,7 @@ public class InventoryController : MonoBehaviour {
 
     private void Update()
     {
-        FillInSidePanel();
+        UpdateContents();
         //Si joueur appuie sur I -> ouvre inventaire; si ouvert -> ferme inventaire
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -77,6 +81,14 @@ public class InventoryController : MonoBehaviour {
     public void ToggleWindow()
     {
         _heroInventory.SetActive(!_heroInventory.activeSelf);
+        if (_heroInventory.activeSelf)
+        {
+            _inventoryButton.GetComponent<Image>().color = Color.grey;
+        }
+        else
+        {
+            _inventoryButton.GetComponent<Image>().color = Color.white;
+        }
     }
 
     //Pour afficher un seul Content
@@ -305,23 +317,24 @@ public class InventoryController : MonoBehaviour {
         FillInSidePanel();
     }
 
-    //---------------------------------------------------Récupérer loot---------------------------------------------------
-    public void GetLootDropped(LootDropItem item)
-    {
-        _inventoryDetails.GetItem(item);
-    }
-
     //---------------------------------------------------Boire potion---------------------------------------------------
     public void DrinkPotion()
     {
         Debug.Log("---Drink potion---");
         if (_inventoryDetails.nbPotions != 0)
         {
+            _potionButton.GetComponent<Image>().color = Color.grey;
             _inventoryDetails.DrinkPotion();
+            FillInSidePanel();
+            if(_inventoryDetails.nbPotions != 0)
+            {
+                _potionButton.GetComponent<Image>().color = Color.white;
+            }
         }
         else
         {
             //TODO afficher msg indiquant plus de potion
+            Debug.Log("---------PLUS DE POTIONS---------");
         }
     }
 }
