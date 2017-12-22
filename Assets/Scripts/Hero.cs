@@ -43,7 +43,7 @@ public class Hero : MonoBehaviour {
     private void PickUpObject(Item item)
     {
         Debug.Log("----------------ramassé : " + item.SpawnedItem.ItemType + "------------");
-        _playerInventory.GetItem(item.SpawnedItem);
+        GameObject.Find("UserInterfaceCanvas/InventoryButton").GetComponent<InventoryController>().GetItem(item.SpawnedItem);
     }
 
     public void RegenerateLife()

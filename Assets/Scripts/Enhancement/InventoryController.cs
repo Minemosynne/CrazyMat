@@ -62,7 +62,6 @@ public class InventoryController : MonoBehaviour {
 
     private void Update()
     {
-        UpdateContents();
         //Si joueur appuie sur I -> ouvre inventaire; si ouvert -> ferme inventaire
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -315,6 +314,12 @@ public class InventoryController : MonoBehaviour {
         PopulateWeaponEnhancements();
         PopulateUnlockedEnhancements();
         FillInSidePanel();
+    }
+
+    public void GetItem(LootDropItem item)
+    {
+        _inventoryDetails.GetItem(item);
+        UpdateContents();
     }
 
     //---------------------------------------------------Boire potion---------------------------------------------------
