@@ -7,35 +7,37 @@ public class PersoMovement : MonoBehaviour
 	
     [SerializeField]
 	// Vitesse de déplacement
-    private float _speed = 1f;
+    private float _speed;
 
     private Rect _bounds;
+    
+    private Vector3 _velocity;
 
     void Awake() {
         SetBoundaries();
     }
-    
+
     void Update() {
         Move();
     }
 
 	// Méthode de déplacement du joueur
     void Move() {
-		Vector3 velocity = new Vector3();
+		_velocity = new Vector3();
 
 		// Si le joueur se déplace vers la droite ou vers la gauche
 		if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.LeftArrow)) {
-			velocity = GetAxisVector (1);
+            _velocity = GetAxisVector (1);
 		}
 
 		// Si le joueur se déplace vers le haut ou vers le bas
 		else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.DownArrow)) {
-			velocity = GetAxisVector (2);
+            _velocity = GetAxisVector (2);
 		}
 
-		// Appliquer le déplacement
-        velocity *= _speed * Time.deltaTime;
-        transform.Translate(velocity);
+        // Appliquer le déplacement
+        _velocity *= _speed * Time.deltaTime;
+        transform.Translate(_velocity);
         ClampPosition ();
     }
 

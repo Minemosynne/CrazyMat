@@ -26,7 +26,7 @@ public class SceneLoader : MonoBehaviour
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Player"));
         SceneManager.LoadScene(GameScene);
         //Pour positionner le joueur dans le coin bas-gauche de la map
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(-8, 0);
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(-8, 0, -1);
     }
 
 	// Lancement de la scène FightScene

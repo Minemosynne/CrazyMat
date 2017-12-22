@@ -58,6 +58,7 @@ public class InventoryController : MonoBehaviour {
 
     private void Update()
     {
+        FillInSidePanel();
         //Si joueur appuie sur I -> ouvre inventaire; si ouvert -> ferme inventaire
         if (Input.GetKeyDown(KeyCode.I))
         {
